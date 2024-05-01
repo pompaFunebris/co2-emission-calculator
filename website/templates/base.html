@@ -15,9 +15,18 @@
   <style>
     /* Custom styles for the footer */
     footer {
-      background-color: #f8f9fa; /* Light gray background */
-      padding: 20px 0; /* Add padding to top and bottom */
-      text-align: center; /* Center-align text */
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    /* Push the body content down */
+    body {
+      margin-bottom: 80px; /* Height of the footer */
     }
   </style>
 </head>
@@ -42,13 +51,13 @@
               Baza wiedzy
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/wiedza/slad-weglowy">Czym jest ślad węglowy budynku</a></li>
-              <li><a class="dropdown-item" href="/wiedza/po-co-liczyc-slad-weglowy/">Dlaczego warto szacować ślad węglowy budynku</a></li>
-              <li><a class="dropdown-item" href="/wiedza/jak-liczyc-slad-weglowy">Jak obliczyć ślad węglowy</a></li>
+              <li><a class="dropdown-item" href="/wiedza#slad-weglowy">Czym jest ślad węglowy budynku?</a></li>
+              <li><a class="dropdown-item" href="/wiedza#po-co-liczyc-slad-weglowy">Dlaczego warto szacować ślad węglowy budynku?</a></li>
+              <li><a class="dropdown-item" href="/wiedza#jak-liczyc-slad-weglowy">Jak obliczyć ślad węglowy?</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/kalkulator">Kalkulator</a>
+            <a class="nav-link" href="/kalkulator-emisji">Kalkulator</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/kontakt">Kontakt</a>
@@ -73,5 +82,3 @@
           integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
