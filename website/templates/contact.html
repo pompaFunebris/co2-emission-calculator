@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Kontakt{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <br>
+    <h2>Kontakt do Autorów</h2>
+    <p>Skontaktuj się z nami za pośrednictwem poniższych danych kontaktowych:</p>
+    <ul>
+        <li>Email: author1@example.com</li>
+        <li>Telefon: +48 123 456 789</li>
+    </ul>
+    <h2>Kontakt</h2>
+    <p>Masz pytanie lub opinie? Wypełnij poniższy formularz, aby się z nami skontaktować.</p>
+
+    <form id="contactForm">
+        <div class="mb-3">
+            <label for="name" class="form-label">Twoje Imię</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Twój Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Wiadomość</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Wyślij Wiadomość</button>
+
+    </form>
+    <br>
+</div>
+
+<script>
+    // Example JavaScript for form submission
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        // Perform form validation and submission here
+        // You can use AJAX to submit the form data to the server asynchronously
+    });
+</script>
+{% endblock %}
