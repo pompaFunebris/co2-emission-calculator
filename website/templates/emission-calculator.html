@@ -3,21 +3,22 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="mt-5">CO2 Calculator</h2>
+    <h2 class="mt-5">Kalkulator ekwiwalentu emisji CO2 pochodzącej z materiałów budowlanych</h2>
     <form method="POST" id="co2_form" class="mt-4">
         <div class="mb-4">
             <h3>Materiały konstrukcyjne</h3>
             <div id="materials_section">
                 <div class="material_entry">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center mb-2">
                         <div class="col-md-4">
-                            <label for="material_1" class="form-label">Materiał 1</label>
+                            <label class="form-label">Materiał konstrukcyjny</label>
                             <select class="form-select material_name" name="material_name[]" required>
-                                <option value="default">Wybierz</option>
+                                <option>Wybierz</option>
                             </select>
                         </div>
+
                         <div class="col-md-4">
-                            <label for="volume_1" class="form-label">Objętość [m3]</label>
+                            <label class="form-label">Objętość [m3]</label>
                             <input type="number" class="form-control material_volume" name="material_volume[]" required>
                         </div>
                     </div>
@@ -30,15 +31,15 @@
             <h3>Termoizolacje</h3>
             <div id="insulation_section">
                 <div class="insulation_entry">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center mb-2">
                         <div class="col-md-4">
-                            <label for="insulator_1" class="form-label">Materiał 1</label>
+                            <label class="form-label">Materiał termoizolacyjny</label>
                             <select class="form-select insulator_name" name="insulator_name[]" required>
                                 <option value="default">Wybierz</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="insulation_volume_1" class="form-label">Objętość [m3]</label>
+                            <label class="form-label">Objętość [m3]</label>
                             <input type="number" class="form-control insulator_volume" name="insulator_volume[]" required>
                         </div>
                     </div>
@@ -51,15 +52,15 @@
             <h3>Wykończenia</h3>
             <div id="finishings_section">
                 <div class="finishings_entry">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center mb-2">
                         <div class="col-md-4">
-                            <label for="finishing_1" class="form-label">Materiał 1</label>
+                            <label class="form-label">Materiał wykończeniowy</label>
                             <select class="form-select finishing_name" name="finishing_name[]" required>
                                 <option value="default">Wybierz</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="finishing_volume_1" class="form-label">Objętość [m3]</label>
+                            <label class="form-label">Objętość [m3]</label>
                             <input type="number" class="form-control finishing_volume" name="finishing_volume[]" required>
                         </div>
                     </div>
@@ -72,15 +73,15 @@
             <h3>Pozostałe</h3>
             <div id="other_section">
                 <div class="other_entry">
-                    <div class="row align-items-center">
+                    <div class="row align-items-center mb-2">
                         <div class="col-md-4">
-                            <label for="other_1" class="form-label">Nazwa</label>
+                            <label class="form-label">Okna, drzwi, bramy itd.</label>
                             <select class="form-select other_name" name="other_name[]" required>
                                 <option value="default">Wybierz</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="other_quantity_1" class="form-label">Ilość</label>
+                            <label class="form-label">Ilość</label>
                             <input type="number" class="form-control other_quantity" name="other_quantity[]" required>
                         </div>
                     </div>
@@ -91,6 +92,7 @@
 
         <input type="submit" class="btn btn-primary" value="Calculate">
     </form>
+    <br>
 </div>
 
 <script>
@@ -105,15 +107,13 @@
                 const newEntry = document.createElement('div');
                 newEntry.classList.add(entryClass);
                 newEntry.innerHTML = `
-                    <div class="row align-items-center">
+                    <div class="row align-items-center mb-2">
                         <div class="col-md-4">
-                            <label for="${entryClass}_${entryCount}" class="form-label">${labelText} ${entryCount}</label>
                             <select class="form-select ${entryClass}_name" name="${entryClass}_name[]" required>
                                 <option value="default">Wybierz</option>
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="${entryClass}_${entryCount}_volume" class="form-label">Objętość [m3]</label>
                             <input type="number" class="form-control ${entryClass}_volume" name="${entryClass}_volume[]" required>
                         </div>
                     </div>
