@@ -1,7 +1,182 @@
 {% extends "base.html" %}
-{% block title %}Kontakt{% endblock %}
-
+{% block title %}CO2 Calculator{% endblock %}
 
 {% block content %}
-<h2>Emission Caculator</h2>
+<div class="container">
+    <h2 class="mt-5">CO2 Calculator</h2>
+    <form method="POST" id="co2_form" class="mt-4">
+        <div class="mb-4">
+            <h3>Materiały konstrukcyjne</h3>
+            <div id="materials_section">
+                <div class="material_entry">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label for="material_1" class="form-label">Materiał 1</label>
+                            <select class="form-select material_name" name="material_name[]" required>
+                                <option value="default">Wybierz</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="volume_1" class="form-label">Objętość [m3]</label>
+                            <input type="number" class="form-control material_volume" name="material_volume[]" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-2" id="add_material_button">Dodaj materiał</button>
+        </div>
+
+        <div class="mb-4">
+            <h3>Termoizolacje</h3>
+            <div id="insulation_section">
+                <div class="insulation_entry">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label for="insulator_1" class="form-label">Materiał 1</label>
+                            <select class="form-select insulator_name" name="insulator_name[]" required>
+                                <option value="default">Wybierz</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="insulation_volume_1" class="form-label">Objętość [m3]</label>
+                            <input type="number" class="form-control insulator_volume" name="insulator_volume[]" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-2" id="add_insulation_button">Dodaj termoizolację</button>
+        </div>
+
+        <div class="mb-4">
+            <h3>Wykończenia</h3>
+            <div id="finishings_section">
+                <div class="finishings_entry">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label for="finishing_1" class="form-label">Materiał 1</label>
+                            <select class="form-select finishing_name" name="finishing_name[]" required>
+                                <option value="default">Wybierz</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="finishing_volume_1" class="form-label">Objętość [m3]</label>
+                            <input type="number" class="form-control finishing_volume" name="finishing_volume[]" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-2" id="add_finishings_button">Dodaj wykończenie</button>
+        </div>
+
+        <div class="mb-4">
+            <h3>Pozostałe</h3>
+            <div id="other_section">
+                <div class="other_entry">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label for="other_1" class="form-label">Nazwa</label>
+                            <select class="form-select other_name" name="other_name[]" required>
+                                <option value="default">Wybierz</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="other_quantity_1" class="form-label">Ilość</label>
+                            <input type="number" class="form-control other_quantity" name="other_quantity[]" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary mt-2" id="add_other_button">Dodaj pozostałe</button>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Calculate">
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function addEntry(sectionId, entryClass, addButtonId, labelText, inputType, options) {
+            const addButton = document.getElementById(addButtonId);
+            const section = document.getElementById(sectionId);
+
+            addButton.addEventListener('click', function () {
+                const entryCount = section.querySelectorAll('.' + entryClass).length + 1;
+
+                const newEntry = document.createElement('div');
+                newEntry.classList.add(entryClass);
+                newEntry.innerHTML = `
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <label for="${entryClass}_${entryCount}" class="form-label">${labelText} ${entryCount}</label>
+                            <select class="form-select ${entryClass}_name" name="${entryClass}_name[]" required>
+                                <option value="default">Wybierz</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="${entryClass}_${entryCount}_volume" class="form-label">Objętość [m3]</label>
+                            <input type="number" class="form-control ${entryClass}_volume" name="${entryClass}_volume[]" required>
+                        </div>
+                    </div>
+                `;
+
+                section.appendChild(newEntry);
+
+                // Populate options for the new select element
+                const selectElement = newEntry.querySelector(`.${entryClass}_name`);
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option.value;
+                    optionElement.textContent = option.label;
+                    selectElement.appendChild(optionElement);
+                });
+            });
+        }
+
+        function populateOptions(entryClass, options) {
+            const selectElements = document.querySelectorAll(`.${entryClass}_name`);
+            selectElements.forEach(select => {
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option.value;
+                    optionElement.textContent = option.label;
+                    select.appendChild(optionElement);
+                });
+            });
+        }
+
+        const materialOptions = [
+            { value: 'steel', label: 'Stal' },
+            { value: 'concrete', label: 'Beton' },
+            // Add more options as needed
+        ];
+
+        const insulationOptions = [
+            { value: 'styropian', label: 'Styropian' },
+            { value: 'wełna_mineralna', label: 'Wełna mineralna' },
+            // Add more options as needed
+        ];
+
+        const finishingOptions = [
+            { value: 'plyta', label: 'Płyta elewacyjna betonowa' },
+            { value: 'plyta2', label: 'Płyta elewacyjna betonowa2' },
+            // Add more options as needed
+        ];
+
+        const otherOptions = [
+            { value: 'okna', label: 'Okna duże' },
+            { value: 'drzwi', label: 'Drzwi' },
+            // Add more options as needed
+        ];
+
+        populateOptions('material', materialOptions);
+        populateOptions('insulator', insulationOptions);
+        populateOptions('finishing', finishingOptions);
+        populateOptions('other', otherOptions);
+
+        addEntry('materials_section', 'material_entry', 'add_material_button', 'Materiał', 'number', materialOptions);
+        addEntry('insulation_section', 'insulation_entry', 'add_insulation_button', 'Materiał', 'number', insulationOptions);
+        addEntry('finishings_section', 'finishings_entry', 'add_finishings_button', 'Materiał', 'number', finishingOptions);
+        addEntry('other_section', 'other_entry', 'add_other_button', 'Nazwa', 'number', otherOptions);
+    });
+</script>
 {% endblock %}
