@@ -1,21 +1,208 @@
 {% extends "base.html" %}
-{% block title %}Jak obliczyć ślad węglowy? - Emission calculator{% endblock %}
+{% block title %}Jak obliczyć ślad węglowy? - Kalkulator emisji{% endblock %}
 
 {% block content %}
-<br>
-<h1>Jak obliczyć ślad węglowy?</h1>
-<p>Tu umieść treść dotyczącą sposobu obliczania śladu węglowego.</p>
+<div class="container">
+    <div class="article" style="text-align: justify;">
+        <div style="text-align: center;">
+            <figure>
+                <img src="{{ url_for('static', filename='images/green-archi.jpg') }}" alt="Image 3" style="width: 45vw; min-width: 300px;">
+            </figure>
+        </div>
+        <h1 class="mb-4" id="slad-weglowy" style="text-align: center;">Szacowanie śladu węglowego budynków</h1>
 
-<h2>Section 1: Metoda A</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.</p>
-<a href="#czym-jest-slad-weglowy">Przejdź do sekcji 2</a>
+        <div class="section" style="text-align: center;">
+<!--            <h2>Co to jest ślad węglowy budynku?</h2>-->
+            <p style="text-align: justify;">Ślad węglowy budynku oznacza całkowitą ilość gazów cieplarnianych wyemitowanych podczas całego procesu życia danego obiektu lub przedsiębiorstwa. Jest zazwyczaj wyrażony jako ekwiwalent dwutlenku węgla na jednostkę funkcjonalną produktu, np. kg CO2 ew./m3. Ponieważ różne gazy cieplarniane, takie jak metan czy tlenki azotu, także wpływają na środowisko, naukowcy posługują się jednostką ekwiwalentu dwutlenku węgla. Określa ona stężenie dwutlenku węgla, którego emisja do atmosfery miałaby identyczny skutek jak dane stężenie porównywalnego gazu cieplarnianego. Wpływ na środowisko jest ściśle związany z rodzajem używanej energii - na przykład, energia z węgla generuje większe emisje niż energia z odnawialnych źródeł. W Polsce, gdzie większość energii pochodzi z węgla, ślad węglowy budynków może być szczególnie wysoki.</p>
 
-<h2 id="po-co-szacowac-slad-weglowy">Section 2: Metoda B</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.</p>
+            <figure>
+                <img src="{{ url_for('static', filename='images/co2-equivalent-of-various-gases.png') }}" alt="Image 3" style="width: 40vw; min-width: 300px;">
+                <figcaption>Wartości GWP (Global-warming potential) dla różnych gazów cieplarnianych </figcaption>
+            </figure>
 
-<a href="#jak-obliczac-slad-weglowy">Przejdź do sekcji 3</a>
+            <br>
+            <h1 class="mb-4">Metody oceny śladu węglowego materiałów budowlanych</h1>
+            <p style="text-align: justify;">W dzisiejszych czasach najczęściej stosuje się dwie metody oceny śladu węglowego: "od kołyski do bramy" (ang. „from cradle to gate) lub "od kołyski do grobu" (ang. from cradle to grave”). Pierwsza z nich koncentruje się na wszystkich etapach od wydobycia surowców do dostarczenia gotowego produktu do bramy zakładu produkcyjnego. Druga metoda uwzględnia pełny cykl życia produktu - od wydobycia surowców przez produkcję, użytkowanie, aż do utylizacji. Przedsiębiorstwa, które chcą oszacować ślad węglowy swoich produktów, zazwyczaj wybierają metodę "od kołyski do bramy", gdyż jest ona bardziej precyzyjna i pozwala na dokładne zbadanie wszystkich procesów.</p>
 
-<h2 id="jak-obliczac-slad-weglowy">Section 3: Metoda C</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante vestibulum, consequat tellus ut, molestie nulla. Nullam eu justo sed nisi congue ultrices. Cras at justo et velit ultricies iaculis. Integer interdum, odio sit amet hendrerit vulputate, justo arcu dignissim velit, at egestas mauris risus nec libero. Curabitur eu enim elit. Phasellus quis quam vitae sapien fermentum malesuada.</p>
-<a href="#czym-jest-slad-weglowy">Powrót do sekcji 1</a>
+            <h1>Deklaracje EPD</h1>
+            <p style="text-align: justify;">Deklaracje EPD (ang. Environmental Product Declarations) są dokumentami opisującymi wpływ danego produktu na środowisko w trakcie całego jego cyklu życia. Nie są to typowe certyfikaty, ale raczej szczegółowe oceny oddziaływania produktu na środowisko, uwzględniające różne etapy produkcji, transportu, użytkowania i utylizacji. Ich celem jest ułatwienie oceny produktów budowlanych pod względem ich wpływu na środowisko. Produkty posiadające deklaracje EPD są często wykorzystywane w projektach budowlanych, które dążą do uzyskania certyfikatów zrównoważonego budownictwa, takich jak BREEAM, DGNB czy LEED. W Polsce wydawaniem deklaracji EPD zajmuje się Instytut Techniki Budowlanej z siedzibą w Warszawie, który współpracuje z zagranicznymi instytucjami zajmującymi się certyfikacją ekologiczną. Do tej pory na stronie Instytutu (https://www.itb.pl/itb-epds/) znajduje się około 600 publicznie dostępnych deklaracji.</p>
+            <br>
+            <div style="text-align: center;">
+            <figure>
+                <img src="{{ url_for('static', filename='images/epd-declaration.png') }}" alt="Image 3" style="width: 60vw; min-width: 70px;">
+                <figcaption>Fragment deklaracji EPD zawierający wykaz emisji w poszczególnych fazch życia produktu</figcaption>
+            </figure>
+            </div>
+        </div>
+
+        <div class="section" >
+            <h1 class="mb-4" style="text-align: center;">Metoda analizy cyklu życia budynku</h1>
+            <p style="text-align: justify;">Analiza cyklu życia budynku, opisana w normie europejskiej EN 15978, jest kluczowym narzędziem związanym z określaniem śladu węglowego. Ta norma definiuje trzy fazy życia budynku: A - etap produkcji i wznoszenia, B - okres użytkowania, oraz C - koniec życia. (szczegółowy podział na fazy i moduły zaprezentowany jest na rysunku obok). Metoda ta, znana jako LCA (Life Cycle Assessment), rozwija się dynamicznie jako narzędzie oceny wpływu na środowisko produktów, usług i technologii. Przeanalizowanie cyklu życia w ramach analizy LCA obejmuje wszystkie aspekty środowiskowe i oddziaływanie produktu od momentu pozyskania surowców, poprzez produkcję i użytkowanie, aż do końca jego istnienia. Dzięki tej metodzie każdy etap produkcji budynku jest uwzględniany, co pozwala na kompleksową ocenę zagrożeń dla środowiska związanych z budownictwem. Normy takie jak PN-EN 1597851 dotyczące oceny środowiskowej budynków oraz PN-EN 1580450 dotyczące oceny środowiskowej wyrobów budowlanych odgrywają kluczową rolę w kontekście budownictwa i materiałów budowlanych.</p>
+
+            <br>
+            <div style="text-align: center;">
+            <figure>
+                <img src="{{ url_for('static', filename='images/diagram-lce-phases.png') }}" alt="Image 3">
+                <figcaption>Cykl życia budynku wg normy EN 15978</figcaption>
+            </figure>
+            </div>
+        </div>
+
+        <div class="section">
+            <h1 class="mb-4" id="po-co-liczyc-slad-weglowy" style="text-align: center;">Dlaczego warto szacować ślad węglowy budynku?</h1>
+            <p style="text-align: justify;">Sektor budownictwa  zużywa  w  Europie ogromne ilości  zasobów  - około  połowy wszystkich wydobywanych surowców, odpowiada  za  połowę całkowitego  zużycia  energii  i  jedną trzecią zużycia  wody oraz  wytwarza  jedną trzecią odpadów. W związku z tym stanowi on głównego adresata polityki Komisji Europejskiej w zakresie redukcji emisji gazów cieplarnianych. W lipcu 2021 roku Komisja przyjęła pakiet legislacyjny "FIT for 55", mający na celu redukcję emisji gazów cieplarnianych na terenie UE o 55% do 2030 roku w porównaniu z poziomem z 1990 roku. W wielu krajach Unii Europejskiej architekci są zobowiązani do przeprowadzania analiz cyklu życia budynków oraz analiz emisji już na etapie projektowym. Choć w Polsce jeszcze nie wprowadzono żadnych regulacji prawnych w tym zakresie, warto już teraz implementować analizy środowiskowe do prac projektowych. Pozwoli to na zaprojektowanie budynków z myślą o przyszłości, kontrolę oraz redukowanie emisji gazów cieplarnianych oraz dostosowanie się do wymagań europejskich inwestorów.</p>
+
+            <br>
+            <div style="text-align: center;">
+            <figure>
+                <img src="{{ url_for('static', filename='images/pychart-co2-emissions.jpg') }}" alt="Image 3" style="width: 30vw; min-width: 300px;">
+                <figcaption>Udział sektoru budownictwa w globalnej emisji CO2</figcaption>
+            </figure>
+            </div>
+            <br>
+
+            <p style="text-align: justify;">W listopadzie 2022 roku Parlament Europejski przyjął dyrektywę o sprawozdawczości przedsiębiorstw w zakresie zrównoważonego rozwoju CSRD (ang. Corportate Sustainbility Reporting Directive). Zobowiązuje ona wszystkie duże oraz niektóre średnie i małe przedsiębiorstwa do ujawniania śladu węglowego w raportach ESG. Raport ESG to dokument zawierający analizę działań i wyników przedsiębiorstwa pod kątem jego działalności w obszarach środowiskowym, społecznym i zarządzania (ESG - Environmental, Social, Governance). W raporcie ESG przedsiębiorstwo prezentuje informacje dotyczące swoich praktyk zrównoważonego rozwoju, w tym działań podejmowanych w celu ochrony środowiska, promowania społecznej odpowiedzialności biznesu oraz skutecznego zarządzania korporacyjnego. Dyrektywa CSRD będzie miała bardzo duży wpływ na zmiany na rynku nieruchomości. Spowoduje, że inwestorzy budowlani będą zmuszeni do dokonywania kompleksowych analiz LCA oraz zarządzania swoim śladem węglowym, co będzie prowadzić do zwiększania wysiłków w kierunku redukcji emisji gazów cieplarnianych oraz promowania bardziej zrównoważonych projektów.</p>
+
+            <figure class="mt-5">
+                <img src="{{ url_for('static', filename='images/investment-stages-chart.png') }}" alt="Image 3" style="width: 50vw; min-width: 300px;">
+                <figcaption>Możliwość wpływu na ograniczenie emisji oraz dostępność danych na poszczególnych etapach procesu inwestycyjnego</figcaption>
+            </figure>
+
+            <p class="mt-5" style="text-align: justify;">Ślad węglowy budynku warto oszacować już na etapie projektu koncepcyjnego. Dzięki  temu ocena  cyklu życia  budynku może w  największym stopniu przyczynić się do minimalizacji śladu węglowego przedsięwzięcia. Spośród wszystkich trzech etapów wskazanych w unijnym systemie wskaźników zrównoważonego charakteru budynków Level(s) jest to najmniej dokładny poziom oceny, ponieważ obejmuje głównie parametry jakościowe na wczesnym etapie realizacji. Ocena  cyklu życia  budynku wykonana  na  tym etapie ma  na  celu przedstawienie alternatywnych rozwiązań dla  projektu koncepcyjnego  oraz  zidentyfikowanie elementów  budynku, które najbardziej przyczyniają się do  emisji  gazów  cieplarnianych. Wyniki  oceny cyklu życia  przeprowadzonej na  tym etapie powinny być podstawą do  sformułowania  wytycznych dla  dalszych faz  projektu. Oszacowanie śladu węglowego na wcześniejszych etapach projektu jest wyjątkowo  wartościowe z  punktu widzenia dekarbonizacji inwestycji i może być dodatkowo  premiowane przez  różne systemy oceny wielokryterialnej budynków.</p>
+
+
+        <style>
+            .card {
+                height: 100%;
+            }
+        </style>
+         <br>
+        <h1 class="mb-5" id="jak-liczyc-slad-weglowy" style="text-align: center;">Jak oszacować ślad węglowy budynku?</h1>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Zakres "od kolebki do bramy”</h5>
+                        <p class="card-text" style="text-align: justify;">Zakres „od kolebki do bramy” (ang. from cradle to gate) uwzględnia wyłącznie emisje związane z  wytworzeniem materiałów, z których powstał lub powstanie budynek. Ślad węglowy w tym zakresie można oszacować za pomocą naszego kalkulatora.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Ocena „od kolebki do ukończenia budowy”</h5>
+                        <p class="card-text" style="text-align: justify;">Zakres „od kolebki  do  ukończenia  budowy” (ang. from cradle to  completion), czyli wejściowy ślad węglowy,  zawiera  także emisje spowodowane przez  transport wyrobów  na  miejsce budowy oraz  przez  sam proces budowy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Ocena „od kolebki do grobu”</h5>
+                        <p class="card-text" style="text-align: justify;">Zakres „od kolebki  do  grobu” (ang. from cradle to  grave), czyli całkowity ślad węglowy bierze pod uwagę cały cykl życia budynku, zatem moduły związane z wytworzeniem materiałów, budową, użytkowaniem i rozbiórką.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Można rozważyć także zakres „od kolebki do kolebki”</h5>
+                        <p class="card-text" style="text-align: justify;">Zakres „od kolebki  do  kolebki” (ang. from cradle to  cradle), uwzględnia dodatkowo korzyści i obciążenia dla środowiska wynikające z recyklingu materiałów budowlanych po rozbiórce.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="mb-5" style="text-align: center;">Ślad węglowy w różnych fazach życia budynku</h1>
+        <p style="text-align: justify;">Na początku procesu szacowania śladu węglowego budynku trzeba zdecydować się, jaki zakres cyklu życia budynku będzie brany pod uwagę. Poniżej zaprezentowano sposób szacowania śladu węglowego w każdej z trzech faz życia budynku.</p>
+
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center; margin-bottom: 10px;">Faza wyrobu A1-A3</h5>
+                        <hr>
+                        <p class="card-text">Etap produkcji, obejmujący moduły od A1 do A3, jest kluczowym elementem analizy cyklu życia budynku. Dokładne oszacowanie emisji dwutlenku węgla na tym etapie jest istotne dla wiarygodnych wyników całkowitego śladu węglowego budynku. Proces szacowania śladu węglowego w tej fazie jest prosty - polega na zsumowaniu emisji związanych z każdym elementem budynku. Aby to zrobić, należy pomnożyć ilość materiału (np. w kg, m2, m3, m, szt.) przez wartość wskaźnika GWP (Global Warming Potential) dla modułów A1-A3 danego materiału. Wskaźniki GWP można znaleźć w deklaracjach EPD dla poszczególnych produktów. Jeśli konkretny producent nie jest jeszcze znany, można skorzystać z danych generycznych, czyli średnich wartości dla danego materiału. Następnie sumuje się wszystkie uzyskane wyniki. Zwykle praktyką jest wyłączenie z analizy komponentów budynku, których masa stanowi mniej niż 1% całkowitej masy budynku, pod warunkiem że suma tych wyłączeń nie przekracza 5% masy całego obiektu. Na tym etapie można również skorzystać z naszego kalkulatora.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <figure>
+                <div class="col-md-6 mx-auto">
+                    <img src="{{ url_for('static', filename='images/emissions-structure.png') }}" class="card-img-top" alt="About Image 2" style="width: 28vw; min-width: 70px;">
+                </div>
+                <figcaption class="text-center" style="margin-top: 8px;">Struktura emisji CO2 w poszczególnych fazach cylku życia</figcaption>
+            </figure>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">Faza wznoszenia A4-A5</h5>
+                        <hr>
+                        <p class="card-text">Moduł A4 ocenia emisje dwutlenku węgla związane z transportem materiałów z fabryki na plac budowy. Aby określić te emisje, potrzebne są dane dotyczące odległości między fabryką a miejscem budowy, rodzaju używanego transportu, jego efektywności, stopnia wypełnienia oraz masy przewożonego materiału. Często te informacje są dostępne w deklaracjach EPD dla poszczególnych materiałów. Gdy brakuje szczegółowych danych, należy opierać się na ogólnych informacjach dotyczących typowych dystansów i środków transportu w danym regionie. Moduł A4 zazwyczaj ma niewielki wpływ na cały ślad węglowy budynku i można go oszacować na poziomie około 1%.</p>
+                        <p class="card-text">Emisje dwutlenku węgla wynikające z procesu budowy należy uwzględnić w module A5. Zazwyczaj mają one umiarkowany, ale zauważalny udział w całkowitym śladzie węglowym, wynoszący około 4-5%. Ważne jest uwzględnienie zużycia energii na przygotowanie terenu, prace budowlane oraz zarządzanie odpadami w trakcie budowy. Podczas korzystania z informacji z deklaracji EPD, należy sprawdzić, czy sposób montażu materiałów opisany w dokumentach jest zgodny z projektem. Moduł A5 powinien także uwzględniać odpady generowane podczas budowy, w tym marnowane produkty oraz wszelkie prace tymczasowe, takie jak platformy robocze czy obudowa wykopów. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">Faza użytkowania B1-B5</h5>
+                        <hr>
+                        <p class="card-text">Emisje dwutlenku węgla związane z użytkowaniem budynku, w ramach wbudowanego śladu węglowego, obejmują użytkowanie, konserwację, naprawy, wymianę i renowację komponentów budowlanych. Moduły B1-B5 mogą razem stanowić istotny udział w całym cyklu życia budynku, wynoszący od 30% do 50%. Zwykle moduł B4 ma największe znaczenie, ponieważ odnosi się do okresu użytkowania elementów budynku, po którym wymaga się ich wymiany ze względu na zużycie, modernizację lub zmianę funkcji przestrzeni. Okres użytkowania ma kluczowe znaczenie dla obliczeń fazy użytkowania, zwłaszcza dla renowacji instalacji wewnętrznych, takich jak instalacje elektryczne i hydrauliczne, oraz materiałów wykończeniowych, np. farb.</p>
+                        <p class="card-text">Moduł B2 dotyczy emisji CO2 związanych z konserwacją dachu, ścian zewnętrznych, okien, drzwi, wykończeniami oraz instalacjami. W module B3 uwzględnione są emisje dwutlenku węgla związane z naprawą elementów budynku, włącznie z używanymi produktami. Dla wielu grup produktów brakuje obecnie danych dotyczących emisji objętych modułami B1-B3, więc wartości przedstawione w ocenach cyklu życia mogą być niedoszacowane. Zaleca się w takich przypadkach przyjęcie emisji związanych z modułami B1-B3 na podstawie wskaźnika odnoszącego się do powierzchni całkowitej budynku, wynoszącego około 5-10 kgCO2e/m2. Moduł B5 dotyczy planowanej zmiany sposobu użytkowania budynku na potrzeby przyszłych funkcji i może obejmować znaczną przebudowę budynku lub jego części. Zaleca się jednak nieuwzględnianie tego modułu ze względu na brak określonych scenariuszy działań.</p>
+                        <p class="card-text">Moduły B6 i B7 koncentrują się na zużyciu energii i wody w ramach oceny cyklu życia budynku. Moduł B6 obejmuje emisje dwutlenku węgla wynikające z zużycia energii przez systemy zintegrowane z budynkiem na przestrzeni całego jego życia. Energia ta pochodzi z sieci cieplnej lub elektrycznej i jest wykorzystywana przez systemy wentylacji, ogrzewania, chłodzenia, ciepłej wody użytkowej oraz oświetlenia. Przy ocenie budynków z odnawialnymi źródłami energii ważne jest określenie sposobu wykorzystania energii. W przypadku braku danych, zakłada się, że energia wytworzona na miejscu w pierwszej kolejności pokrywa potrzeby budynku, a dopiero potem jest eksportowana do sieci. Obliczenia emisji CO2 w module B6 opierają się zwykle na modelowaniu energetycznym budynków, dynamicznych symulacjach termicznych lub obliczeniach energetycznych. Moduły B6 i B7 dotyczące zużycia energii i wody mogą być pominięte w ocenie cyklu życia ze względu na duży margines błędu, którym byłyby obarczone przyjęte założenia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <figure>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ url_for('static', filename='images/data-sources.png') }}" class="card-img-top" alt="About Image 1" style="width: 28vw; min-width: 70px;">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ url_for('static', filename='images/data-sources-p2.png') }}" class="card-img-top" alt="About Image 2" style="width: 28vw; min-width: 70px;">
+                    </div>
+                </div>
+                <figcaption class="text-center" style="margin-top: 8px;">Sugerowane rodzaje danych potrzebnych do oszacowania śladu węglowego</figcaption>
+            </figure>
+        </div>
+
+
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">Faza końca życia C1-C5</h5>
+                        <hr>
+                        <p class="card-text">Po zakończeniu użytkowania, rozpoczyna się etap końca życia budynku. Zaleca się przyjęcie standardowego okresu eksploatacji budynku wynoszącego 50 lat do oceny jego cyklu życia. Moduły C1-C4 obejmują emisje dwutlenku węgla generowane przez procesy rozbiórkowe, transport, przetwarzanie i utylizację materiałów po zakończeniu użytkowania budynku. Jednak dokładność danych dotyczących emisji CO2 na tym etapie jest ograniczona z powodu dalekiej przyszłości i konieczności przyjęcia wielu założeń. Mimo to, wysoka niepewność co do tych wyników nie ma istotnego wpływu na obliczenia śladu węglowego budynku, ponieważ moduły C1-C4 stanowią zazwyczaj niewielki procent całkowitego śladu węglowego. Emisje związane z tymi modułami coraz częściej są uwzględniane w deklaracjach EPD (Environmental Product Declarations).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align: justify;">Wyniki analizy cyklu życia budynku oraz oszacowany ślad węglowy, powinien być zweryfikowany przez odpowiednią instytucję lub jednostkę zewnętrzną. Weryfikacja powinna uwzględniać zakres analizy, źródła danych, spójność założeń i zgodność z normami. Porównywanie wyników z innymi obiektami może pomóc wykryć odchylenia i ewentualne błędy.</p>
+    </div>
+
+
+
+
+
+    </div>
+</div>
 {% endblock %}

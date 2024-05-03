@@ -3,22 +3,122 @@
 
 {% block content %}
 <div class="container">
-    <br>
-    <h1>About the CO2 Emission Calculator</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla velit sed arcu consectetur, at aliquam velit pulvinar. Ut congue dolor at risus vehicula, non fringilla neque consectetur. Sed nec posuere enim. Fusce sed neque turpis. Proin nec eros sem. Nulla ultricies ipsum nec massa dapibus, a consectetur ex tempus. Donec pharetra, nunc sed fermentum placerat, est justo varius mi, et fermentum enim nisl vel purus. Cras condimentum, turpis at tincidunt varius, orci ex congue libero, et tincidunt eros orci at ante. Curabitur fermentum nisl ut velit consequat, sit amet vestibulum ligula ullamcorper.</p>
+    <div style="text-align: center;" class="mb-2">
+        <img src="{{ url_for('static', filename='images/co2-emission-logo.png') }}" class="card-img-top" alt="About Image 1" style="width: 9vw; min-width: 70px; margin-top: 10px;">
+    </div>
+    <h1 class="text-center mb-5">Kalkulator śladu węglowego budynków</h1>
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100"> <!-- Added h-100 class to make both cards equal size -->
+                <div style="text-align: center;">
+                    <img src="{{ url_for('static', filename='images/knowledge-base.png') }}" class="card-img-top" alt="About Image 1" style="width: 5vw; min-width: 70px; margin-top: 10px;">
+                </div>
 
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="About Image 1" class="img-fluid">
-            <h3>Our Mission</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla velit sed arcu consectetur, at aliquam velit pulvinar.</p>
+
+                <div class="card-body">
+                    <h5 class="card-title text-center">Baza wiedzy</h5>
+                    <p class="card-text" style="text-align: justify;">Nasza strona, w zakładce „Baza Wiedzy”, pozwala użytkownikom na uzyskanie wszystkich niezbędnych informacji potrzebnych do oszacowania śladu węglowego projektowanego budynku w całym jego cyklu życia. W zakładce tej można dowiedzieć się między innymi, czym jest ślad węglowy budynku, dlaczego warto go szacować, jak dokonać oceny cyklu życia budynku i gdzie znaleźć dane niezbędne do sporządzenia analiz.</p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="About Image 2" class="img-fluid">
-            <h3>Our Team</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla velit sed arcu consectetur, at aliquam velit pulvinar.</p>
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100"> <!-- Added h-100 class to make both cards equal size -->
+                <div style="text-align: center;">
+                    <img src="{{ url_for('static', filename='images/calculator.png') }}" class="card-img-top" alt="About Image 1" style="width: 5vw; min-width: 70px; margin-top: 10px;">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Kalkulator CO2</h5>
+                    <p class="card-text" style="text-align: justify;">W zakładce „Kalkulator CO2” udostępniamy kalkulator, który bez opłat umożliwia oszacowanie śladu węglowego surowców i materiałów budowlanych potrzebnych do realizacji konkretnego projektu (metoda „od kolebki do bramy”). Kalkulator pozwala na szybkie analizowanie wpływu decyzji projektowych na poziom obciążenia środowiskowego danego projektu. Zalecamy przygotowanie kilku wersji projektu, o różnych technologiach konstrukcji (np. drewnianej, stalowej czy betonowej), a następnie porównywanie otrzymanych wyników. Serdecznie zapraszamy do korzystania!</p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <h3 class="mt-2" style="text-align: center;">Jak skorzystać z kalkulatora?</h3>
+
+    <div class="mt-2">
+        <p style="text-align: justify;">
+            Kalkulator śladu węglowego, dostępny w zakładce „Kalkulator CO2”, pozwala na oszacowanie ton ekwiwalentu dwutlenku węgla, jakie zostałyby wyemitowane przy produkcji materiałów budowlanych potrzebnych do wzniesienia budynku według konkretnego projektu. Kalkulator skupia się na trzech początkowych fazach cyklu życia budynku: wydobycie i wytworzenie surowców (A1), transport (A2) i produkcja wyrobu (A3). Dla budynków zrealizowanych w obecnym standardzie energetycznym, te trzy fazy są odpowiedzialne za około 20% emisji w ogólnej strukturze śladu węglowego w całym cyklu życia budynku, rozliczonym na 50 lat. Dla budynków energooszczędnych oraz wykorzystujących odnawialne źródła energii udział ten dochodzi nawet do 50%.
+        </p>
+    </div>
+
+    <p>
+        Aby skorzystać z naszego kalkulatora należy wybrać z rozwijanej listy wszystkie główne materiały budowlane, które mają znaleźć się w projekcie. Materiały te są podzielone na cztery kategorie, zgodnie z poniższą tabelą.
+    </p>
+
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <caption class="text-center">Tabela: Kategorie materiałów budowlanych</caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Kategoria</th>
+                        <th scope="col" class="text-center">Opis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">Materiały główne</td>
+                        <td class="text-center">Materiały podstawowe takie jak drewno, szkło, beton czy pustaki</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Termoizolacje</td>
+                        <td class="text-center">Materiały używane do izolacji termicznej budynku, np. różna rodzaje styropianu i wełny mineralnej.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Wykończenia</td>
+                        <td class="text-center">Materiały używane do wykończenia wnętrz, dachów oraz elewacji budynków, np. panele, dachówki, okładziny.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">Inne</td>
+                        <td class="text-center">Inne materiały budowlane nieklasyfikowane w powyższych kategoriach, np. dzwi, okna, bramy.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+        <p style="text-align: justify;">
+            Po wybraniu danego materiału należy wpisać do kalkulatora jego jednostkę ilościową, czyli objętość, powierzchnię, liczbę sztuk lub liczbę metrów bieżących. To, jaka jednostka jest właściwa dla danego materiału pojawi się na ekranie po jego wybraniu.
+
+            Po uzupełnieniu wszystkich materiałów zawartych w projekcie należy kliknąć przycisk „OSZACUJ”. Otrzymany wynik to liczba ton ekwiwalentu dwutlenku węgla, jaki zostałby wyemitowany do atmosfery przy produkcji materiałów potrzebnych do realizacji projektu użytkownika.
+        </p>
+        <h3 style="text-align: center;">Przyjęte założenia</h3>
+        <p style="text-align: justify;">
+            Kalkulator śladu węglowego przemnaża jednostkę ilościową danego materiału budowlanego przez wskaźnik GWP (ang. Global Warming Potential), wyrażony w ekwiwalencie dwutlenku węgla przypadającego na daną jednostkę ilościową (np. kg CO2 ew./m3). Dane te pochodzą z deklaracji EPD (ang. Environmental Product Declarations), dostępnych na stronach Instytutu Technologii Budowlanej, niemieckiej bazy danych ÖKOBAUDAT oraz międzynarodowej bazy danych ECO PLATFORM. Jeśli to możliwe, współczynniki użyte w kalkulatorze były pobierane z deklaracji wydanych w Polsce, ponieważ uwzględniają one lokalne uwarunkowania produkcyjne, przykładowo ślad węglowy energii pochodzącej z elektrowni węglowych. Gdy nie było to możliwe, dane były uzupełniane współczynnikami wyznaczonymi dla produktów pochodzących z Niemiec.
+        </p>
+
+        <div class="article" style="text-align: left;">
+        <!-- Your existing content -->
+
+        <h3 style="text-align: center;">Linki do baz danych wykorzystanych w projekcie:</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-center">
+                <div class="d-flex align-items-center">
+                    <a href="https://www.itb.pl/itb-epds/" class="d-flex flex-column align-items-center mx-4">
+                        <img src="{{ url_for('static', filename='images/itb-logo.png') }}" alt="ITB Logo" style="max-width: 150px; margin-bottom: 10px;">
+                        ITB
+                    </a>
+                    <a href="https://www.eco-platform.org/epd-data.html" class="d-flex flex-column align-items-center mx-4">
+                        <img src="{{ url_for('static', filename='images/ekoplatform-logo.jpeg') }}" alt="Ekoplatform Logo" style="max-width: 150px; margin-bottom: 10px;">
+                        Eco Platform
+                    </a>
+                    <a href="https://www.oekobaudat.de/en.html" class="d-flex flex-column align-items-center mx-4">
+                        <img src="{{ url_for('static', filename='images/oekobaudat-logo.png') }}" alt="oekobaudat Logo" style="max-width: 40px; margin-bottom: 10px;">
+                        Oekobaudat
+                    </a>
+                </div>
+            </li>
+</ul>
+
+
+
+    </div>
+    </div>
+    </div>
+
 </div>
 {% endblock %}
-
