@@ -35,11 +35,56 @@
             <button type="button" class="btn btn-secondary mt-2" id="add_other_button">Dodaj pozostałe</button>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Calculate">
+        <input type="submit" class="btn btn-primary" value="Oszacuj">
     </form>
-    <br>
+
+
 </div>
 
+<!-- Add a section to display the chosen materials -->
+<br>
+<!-- Add a section to display the chosen materials -->
+{% if request.method == 'POST' %}
+<div class="container">
+    <div class="mb-4">
+        <h3>Wybrane materiały</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Kategoria</th>
+                    <th>Nazwa</th>
+                    <th>Ile materiału</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material_group in chosen_materials %}
+                {% for material in material_group.data %}
+                <tr>
+                    <td>{{ material_group.category }}</td>
+                    <td>{{ material.name }}</td>
+                    <td>{{ material.volume }} {{ material.unit }}</td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+
+<!-- Add a section to display the calculated emission -->
+{% if request.method == 'POST' %}
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+            <h3 class="card-title text-primary">Oszacowana emisja</h3>
+            <p class="card-text text-muted">Całkowita emisja ekwiwalentu CO<sub>2</sub> to:</p>
+            <h2 class="text-success mb-0">{{ total_emission }} tons</h2>
+        </div>
+    </div>
+</div>
+{% endif %}
+<br><br>
 
 
 <script>
