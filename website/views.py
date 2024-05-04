@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request
+import csv
+
+from flask import Blueprint, render_template, request, jsonify
 
 views = Blueprint("views_blueprint", __name__, static_folder="static", template_folder="templates")
 
@@ -6,7 +8,7 @@ views = Blueprint("views_blueprint", __name__, static_folder="static", template_
 @views.route("/home")
 @views.route("/")
 def render_home():
-    return render_template("home.html")
+    return render_template("about.html")
 
 
 @views.route('/kontakt/')
@@ -22,22 +24,67 @@ def about():
 @views.route('/kalkulator-emisji/', methods=['GET', 'POST'])
 def emission_calculator():
     if request.method == 'POST':
-        # Retrieve form data
-        materials_volume = float(request.form['materials_volume'])
-        insulation_volume = float(request.form['insulation_volume'])
-        finishings_volume = float(request.form['finishings_volume'])
-        other_quantity = int(request.form['other_quantity'])
+        material_names = request.form.getlist('material_name[]')
+        material_volumes = request.form.getlist('material_volume[]')
 
-        # Calculate CO2 emission (replace with actual calculation)
-        total_co2_emission = 0.0
-        total_co2_emission += materials_volume * 10  # Example emission calculation for materials
-        total_co2_emission += insulation_volume * 10  # Example emission calculation for insulation
-        total_co2_emission += finishings_volume * 10  # Example emission calculation for finishings
-        total_co2_emission += other_quantity * 0.1  # Example emission calculation for other
+        insulator_names = request.form.getlist('insulator_name[]')
+        insulator_volumes = request.form.getlist('insulator_volume[]')
 
-        return render_template('co2_calculator_result.html', total_co2_emission=total_co2_emission)
+        finishing_names = request.form.getlist('finishing_name[]')
+        finishing_volumes = request.form.getlist('finishing_volume[]')
+
+        other_names = request.form.getlist('other_name[]')
+        other_quantities = request.form.getlist('other_volume[]')
+
+        print(f"Mat names: {material_names}")
+        print(f"Mat volumes: {material_volumes}")
+
+        print(f"insulator_names: {insulator_names}")
+        print(f"insulator_volumes: {insulator_volumes}")
+
+        print(f"finishing_names: {finishing_names}")
+        print(f"finishing_volumes: {finishing_volumes}")
+
+        print(f"other_names: {other_names}")
+        print(f"other_quantities: {other_quantities}")
+
+        return 'Data received successfully!'
     else:
         return render_template('emission-calculator.html')
+
+
+@views.route('/material-options')
+def get_material_options():
+    material_options = {
+        "material": [],
+        "insulation": [],
+        "finishing": [],
+        "other": []
+    }
+
+    # Read material options from CSV file
+    files = ['main-materials.csv', 'insulators.csv', 'finishing-materials.csv', 'other-materials.csv']
+    categories = ['material', 'insulation', 'finishing','other']
+
+    i = 0
+    for file in files:
+        with open(f'website/static/materials/{file}', newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                label = row['Material']
+                value = row['Value']
+                # category = row['Category']
+                unit = row['Unit']
+                material_options[categories[i]].append({
+                    'label': label,
+                    'value': value,
+                    'unit': unit
+                })
+        i = i+1
+
+    print(material_options["insulation"])
+    return jsonify(material_options)
+
 
 @views.route('/wiedza')
 def carbon_footprint_article():

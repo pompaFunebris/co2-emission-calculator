@@ -3,26 +3,11 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="mt-5">Kalkulator emisji CO2 pochodzącej z materiałów budowlanych</h1>
+    <h1 class="mt-5">Kalkulator emisji ekwiwalentu CO2 pochodzącej z materiałów budowlanych</h1>
     <form method="POST" id="co2_form" class="mt-4">
         <div class="mb-4">
-            <h3>Materiały konstrukcyjne</h3>
+            <h3>Materiały główne</h3>
             <div id="materials_section">
-                <div class="material_entry">
-                    <div class="row align-items-center mb-2">
-                        <div class="col-md-4">
-                            <label class="form-label">Materiał konstrukcyjny</label>
-                            <select class="form-select material_name" name="material_name[]" required>
-                                <option>Wybierz</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="form-label">Objętość [m3]</label>
-                            <input type="number" class="form-control material_volume" name="material_volume[]" required>
-                        </div>
-                    </div>
-                </div>
             </div>
             <button type="button" class="btn btn-secondary mt-2" id="add_material_button">Dodaj materiał</button>
         </div>
@@ -30,20 +15,6 @@
         <div class="mb-4">
             <h3>Termoizolacje</h3>
             <div id="insulation_section">
-                <div class="insulation_entry">
-                    <div class="row align-items-center mb-2">
-                        <div class="col-md-4">
-                            <label class="form-label">Materiał termoizolacyjny</label>
-                            <select class="form-select insulator_name" name="insulator_name[]" required>
-                                <option value="default">Wybierz</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Objętość [m3]</label>
-                            <input type="number" class="form-control insulator_volume" name="insulator_volume[]" required>
-                        </div>
-                    </div>
-                </div>
             </div>
             <button type="button" class="btn btn-secondary mt-2" id="add_insulation_button">Dodaj termoizolację</button>
         </div>
@@ -51,20 +22,7 @@
         <div class="mb-4">
             <h3>Wykończenia</h3>
             <div id="finishings_section">
-                <div class="finishings_entry">
-                    <div class="row align-items-center mb-2">
-                        <div class="col-md-4">
-                            <label class="form-label">Materiał wykończeniowy</label>
-                            <select class="form-select finishing_name" name="finishing_name[]" required>
-                                <option value="default">Wybierz</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Objętość [m3]</label>
-                            <input type="number" class="form-control finishing_volume" name="finishing_volume[]" required>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <button type="button" class="btn btn-secondary mt-2" id="add_finishings_button">Dodaj wykończenie</button>
         </div>
@@ -72,111 +30,137 @@
         <div class="mb-4">
             <h3>Pozostałe</h3>
             <div id="other_section">
-                <div class="other_entry">
-                    <div class="row align-items-center mb-2">
-                        <div class="col-md-4">
-                            <label class="form-label">Okna, drzwi, bramy itd.</label>
-                            <select class="form-select other_name" name="other_name[]" required>
-                                <option value="default">Wybierz</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Ilość</label>
-                            <input type="number" class="form-control other_quantity" name="other_quantity[]" required>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <button type="button" class="btn btn-secondary mt-2" id="add_other_button">Dodaj pozostałe</button>
         </div>
 
         <input type="submit" class="btn btn-primary" value="Calculate">
     </form>
-    <br><br><br><br><br>
+    <br>
 </div>
 
+
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function addEntry(sectionId, entryClass, addButtonId, labelText, inputType, options) {
-            const addButton = document.getElementById(addButtonId);
+    document.addEventListener("DOMContentLoaded", async function () {
+        // Function to fetch options from the backend
+        async function fetchOptions() {
+            try {
+                const response = await fetch('/material-options');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch options');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching options:', error);
+                return {};
+            }
+        }
+
+        // Function to populate options for a select element
+        function populateOptions(selectElement, options) {
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.textContent = option.label; // Use label instead of value
+                optionElement.setAttribute('data-unit', option.unit); // Set data-unit attribute with unit information
+                selectElement.appendChild(optionElement);
+            });
+        }
+
+
+        // Function to add an entry with select and volume input
+        // Function to add an entry with select and volume input
+        function addEntry(sectionId, entryClass, labelText, inputType, options) {
             const section = document.getElementById(sectionId);
 
-            addButton.addEventListener('click', function () {
-                const entryCount = section.querySelectorAll('.' + entryClass).length + 1;
-
-                const newEntry = document.createElement('div');
-                newEntry.classList.add(entryClass);
-                newEntry.innerHTML = `
-                    <div class="row align-items-center mb-2">
-                        <div class="col-md-4">
-                            <select class="form-select ${entryClass}_name" name="${entryClass}_name[]" required>
-                                <option value="default">Wybierz</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="number" class="form-control ${entryClass}_volume" name="${entryClass}_volume[]" required>
-                        </div>
+            const newEntry = document.createElement('div');
+            newEntry.classList.add(entryClass);
+            newEntry.innerHTML = `
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-5">
+                        <label class="form-label">${labelText}</label>
+                        <select class="form-select ${entryClass}_name" name="${entryClass}_name[]" required>
+                            <option value="default">Wybierz</option>
+                        </select>
                     </div>
-                `;
+                    <div class="col-md-4">
+                        <label class="form-label">Jednostka <span class="${entryClass}_unit_hint"></span></label>
+                        <input type="${inputType}" class="form-control ${entryClass}_volume" name="${entryClass}_volume[]" required>
+                    </div>
+                </div>
+            `;
 
-                section.appendChild(newEntry);
+            section.appendChild(newEntry);
 
-                // Populate options for the new select element
-                const selectElement = newEntry.querySelector(`.${entryClass}_name`);
-                options.forEach(option => {
-                    const optionElement = document.createElement('option');
-                    optionElement.value = option.value;
-                    optionElement.textContent = option.label;
-                    selectElement.appendChild(optionElement);
-                });
+            // Populate options for the new select element
+            const selectElement = newEntry.querySelector(`.${entryClass}_name`);
+            populateOptions(selectElement, options);
+
+            // Update unit hint when selecting a material
+            selectElement.addEventListener('change', function () {
+                const selectedOption = selectElement.options[selectElement.selectedIndex];
+                const unitHint = newEntry.querySelector(`.${entryClass}_unit_hint`);
+                const unitHintText = selectedOption.getAttribute('data-unit');
+                unitHint.textContent = unitHintText ? `- [${unitHintText}]` : ''; // Show the unit hint if not empty
+            });
+
+            // Validate input to allow positive decimal numbers
+            const volumeInput = newEntry.querySelector(`.${entryClass}_volume`);
+            volumeInput.addEventListener('input', function () {
+                const value = volumeInput.value.trim();
+                if (!/^\d*\.?\d+$/.test(value) || parseFloat(value) <= 0) {
+                    volumeInput.setCustomValidity('Please enter a positive decimal number.');
+                } else {
+                    volumeInput.setCustomValidity('');
+                }
             });
         }
 
-        function populateOptions(entryClass, options) {
-            const selectElements = document.querySelectorAll(`.${entryClass}_name`);
-            selectElements.forEach(select => {
-                options.forEach(option => {
-                    const optionElement = document.createElement('option');
-                    optionElement.value = option.value;
-                    optionElement.textContent = option.label;
-                    select.appendChild(optionElement);
-                });
-            });
-        }
 
-        const materialOptions = [
-            { value: 'steel', label: 'Stal' },
-            { value: 'concrete', label: 'Beton' },
-            // Add more options as needed
-        ];
 
-        const insulationOptions = [
-            { value: 'styropian', label: 'Styropian' },
-            { value: 'wełna_mineralna', label: 'Wełna mineralna' },
-            // Add more options as needed
-        ];
 
-        const finishingOptions = [
-            { value: 'plyta', label: 'Płyta elewacyjna betonowa' },
-            { value: 'plyta2', label: 'Płyta elewacyjna betonowa2' },
-            // Add more options as needed
-        ];
+        // Fetch all options and populate select elements
+        const allOptions = await fetchOptions();
+        console.log(allOptions);
 
-        const otherOptions = [
-            { value: 'okna', label: 'Okna duże' },
-            { value: 'drzwi', label: 'Drzwi' },
-            // Add more options as needed
-        ];
+        // Add entries for each category
+        addEntry('materials_section', 'material', 'Materiał główny', 'text', allOptions.material);
+        addEntry('insulation_section', 'insulator', 'Materiał termoizolacyjny', 'text', allOptions.insulation);
+        addEntry('finishings_section', 'finishing', 'Materiał wykończeniowy', 'text', allOptions.finishing);
+        addEntry('other_section', 'other', 'Okna, drzwi, bramy itd.', 'text', allOptions.other);
 
-        populateOptions('material', materialOptions);
-        populateOptions('insulator', insulationOptions);
-        populateOptions('finishing', finishingOptions);
-        populateOptions('other', otherOptions);
+        // Add event listener to the "Dodaj materiał" button
+        const addMaterialButton = document.getElementById('add_material_button');
+        addMaterialButton.addEventListener('click', function () {
+            addEntry('materials_section', 'material', 'Materiał główny', 'text', allOptions.material);
+        });
 
-        addEntry('materials_section', 'material_entry', 'add_material_button', 'Materiał', 'number', materialOptions);
-        addEntry('insulation_section', 'insulation_entry', 'add_insulation_button', 'Materiał', 'number', insulationOptions);
-        addEntry('finishings_section', 'finishings_entry', 'add_finishings_button', 'Materiał', 'number', finishingOptions);
-        addEntry('other_section', 'other_entry', 'add_other_button', 'Nazwa', 'number', otherOptions);
+        // Add event listener to the "Dodaj termoizolację" button
+        const addInsulationButton = document.getElementById('add_insulation_button');
+        addInsulationButton.addEventListener('click', function () {
+            addEntry('insulation_section', 'insulator', 'Materiał termoizolacyjny', 'text', allOptions.insulation);
+        });
+
+        // Add event listener to the "Dodaj wykończenie" button
+        const addFinishingsButton = document.getElementById('add_finishings_button');
+        addFinishingsButton.addEventListener('click', function () {
+            addEntry('finishings_section', 'finishing', 'Materiał wykończeniowy', 'text', allOptions.finishing);
+        });
+
+        // Add event listener to the "Dodaj pozostałe" button
+        const addOtherButton = document.getElementById('add_other_button');
+        addOtherButton.addEventListener('click', function () {
+            addEntry('other_section', 'other', 'Okna, drzwi, bramy itd.', 'text', allOptions.other);
+        });
+
     });
 </script>
+
+
+
+
+
+
 {% endblock %}

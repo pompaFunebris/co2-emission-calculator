@@ -1,0 +1,50 @@
+Material,Value,Category,Unit
+Drewno klejone krzyżowo,-669.6,DREWNO,m3
+Drewno klejone lite,-693.5,DREWNO,m3
+Drewno klejone warstwowo,-667,DREWNO,m3
+Drewno konstrukcyjne iglaste,-727,DREWNO,m3
+Drewno konstrukcyjne liściaste,-1136,DREWNO,m3
+Korek,-42.025,DREWNO,m3
+Cegła silikatowa,226.8,CEGŁY,m3
+Cegła klinkierowa,532.9,CEGŁY,m3
+Cegła pełna,523,CEGŁY,m3
+Cegła szklana,3893,CEGŁY,m3
+Okładzina elewacyjna imitująca cegłę,13.64,CEGŁY,m3
+Cement (wartość uśredniona),0.553,ZAPRAWY,kg
+Cement portlandzki (CEM I),0.665,ZAPRAWY,kg
+Cement portlandzki wieloskładnikowy (CEM II),0.7475,ZAPRAWY,kg
+Cement hutniczy (CEM III),0.4633,ZAPRAWY,kg
+Cement pucolanowy (CEM IV),0.6982,ZAPRAWY,kg
+Zaprawy cmentowo-wapienne,187.7,ZAPRAWY,m3
+Zaprawy gipsowe,0.2591,ZAPRAWY,kg
+Beton klasy C20/25,201.2,BETONY,m3
+Beton klasy C25/30,223,BETONY,m3
+Beton klasy C30/37,259.3,BETONY,m3
+Beton klasy C50/60,327.6,BETONY,m3
+Beton komórkowy o klasie gęstości 400 kg/m³,184.4,BETONY,m3
+Beton komórkowy o klasie gęstości 500 kg/m³,262,BETONY,m3
+Prefabrykaty żelbetowe,556.87,BETONY,m3
+Bezpieczne szkło laminowane,65.4,SZKŁA,m2
+Profil okienny aluminiowy,24.94,SZKŁA,mb
+Profil okienny drewniany,-0.3696,SZKŁA,mb
+Profil okienny z PCW,8.131,SZKŁA,mb
+Przeszklenie strukturalne z aluminiowym profilem,82.5,SZKŁA,m2
+Szkło hartowane,11.18,SZKŁA,m2
+Szkło klasyczne typu float,4.85,SZKŁA,m2
+Szyba dwukomorowa,65.13,SZKŁA,m2
+Szyba jednokomorowa,36.64,SZKŁA,m2
+Tworzywo szklano-ceramiczne,32.9,SZKŁA,m2
+Bloczki z betonu komórkowego (gęstość 375kg/m³),149,PUSTAKI,m3
+Bloczki z betonu komórkowego (gęstość 535kg/m³),221,PUSTAKI,m3
+Pustaki betonowe,228.3,PUSTAKI,m3
+Pustaki ceramiczne ,121.68,PUSTAKI,m3
+Pustaki gipsowe,111,PUSTAKI,m3
+pustaki silicatowe,209,PUSTAKI,m3
+Pustaki z gliny ekspandowanej,193.4,PUSTAKI,m3
+Blacha ze stali galwanizowanej,21838.7,METALE,m3
+Blacha ze stali nierdzewnej,28621,METALE,m3
+Stal galwanizowana,13338,METALE,m3
+Stal kutowalcowana,11605.34,METALE,m3
+Stal nierdzewna,19671,METALE,m3
+Stal walcowana na gorąco,13531.09,METALE,m3
+Zbrojenie,3720.9,METALE,m3
