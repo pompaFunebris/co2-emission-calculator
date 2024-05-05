@@ -44,6 +44,7 @@
 <!-- Add a section to display the chosen materials -->
 <br>
 <!-- Add a section to display the chosen materials -->
+<!-- Add a section to display the chosen materials -->
 {% if request.method == 'POST' %}
 <div class="container">
     <div class="mb-4">
@@ -54,6 +55,7 @@
                     <th>Kategoria</th>
                     <th>Nazwa</th>
                     <th>Ile materiału</th>
+                    <th>Emisja Materiału</th> <!-- Add this line -->
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +65,7 @@
                     <td>{{ material_group.category }}</td>
                     <td>{{ material.name }}</td>
                     <td>{{ material.volume }} {{ material.unit }}</td>
+                    <td>{{ material.material_emission }}</td> <!-- Add this line -->
                 </tr>
                 {% endfor %}
                 {% endfor %}
@@ -72,9 +75,10 @@
 </div>
 {% endif %}
 
+
 <!-- Add a section to display the calculated emission -->
 {% if request.method == 'POST' %}
-<div class="container mt-4">
+<div class="container mt-4 section" id="results"> <!-- Add id="results" to the container -->
     <div class="card shadow">
         <div class="card-body">
             <h3 class="card-title text-primary">Oszacowana emisja</h3>
@@ -114,9 +118,6 @@
             });
         }
 
-
-        // Function to add an entry with select and volume input
-        // Function to add an entry with select and volume input
         function addEntry(sectionId, entryClass, labelText, inputType, options) {
             const section = document.getElementById(sectionId);
 
@@ -132,7 +133,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Jednostka <span class="${entryClass}_unit_hint"></span></label>
-                        <input type="${inputType}" class="form-control ${entryClass}_volume" name="${entryClass}_volume[]" required>
+                        <input type="${inputType}" class="form-control ${entryClass}_volume" name="${entryClass}_volume[]">
                     </div>
                 </div>
             `;
@@ -162,9 +163,6 @@
                 }
             });
         }
-
-
-
 
         // Fetch all options and populate select elements
         const allOptions = await fetchOptions();
@@ -199,13 +197,6 @@
         addOtherButton.addEventListener('click', function () {
             addEntry('other_section', 'other', 'Okna, drzwi, bramy itd.', 'text', allOptions.other);
         });
-
     });
 </script>
-
-
-
-
-
-
 {% endblock %}

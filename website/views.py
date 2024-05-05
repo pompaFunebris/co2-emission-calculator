@@ -1,5 +1,4 @@
 import csv
-
 from flask import Blueprint, render_template, request, jsonify
 
 views = Blueprint("views_blueprint", __name__, static_folder="static", template_folder="templates")
@@ -47,15 +46,17 @@ def emission_calculator():
                     if label in names:
                         index = names.index(label)
                         volume = volumes[index]
-                        total_emission += float(volume) * float(value)
-                        material_data.append({'name': label, 'volume': volume, 'unit': unit})
+                        material_emission = float(volume) * float(value)
+                        material_emission_tons = round(material_emission / 1000, 3)
+                        total_emission += material_emission
+                        material_data.append({'name': label, 'volume': volume, 'unit': unit, 'material_emission': f"{material_emission_tons} t"})
 
             chosen_materials.append({'category': kategoria, 'data': material_data})
 
         # Convert total emission to metric tons
-        total_emission = round(total_emission / 1000, 2)
-
-        return render_template('emission-calculator.html', total_emission=total_emission, chosen_materials=chosen_materials)
+        total_emission = round(total_emission / 1000, 3)
+        return render_template('emission-calculator.html', total_emission=total_emission,
+                               chosen_materials=chosen_materials, section='results')
     else:
         return render_template('emission-calculator.html')
 
@@ -80,7 +81,6 @@ def get_material_options():
             for row in reader:
                 label = row['Material']
                 value = row['Value']
-                # category = row['Category']
                 unit = row['Unit']
                 material_options[categories[i]].append({
                     'label': label,
@@ -89,7 +89,6 @@ def get_material_options():
                 })
         i = i+1
 
-    print(material_options["insulation"])
     return jsonify(material_options)
 
 
@@ -104,8 +103,3 @@ def carbon_footprint_article():
         return render_template('carbon-footprint-article.html', section='jak-liczyc-slad-weglowy')
     else:
         return render_template('carbon-footprint-article.html')  # Default render
-
-
-# @views.route('/kalkulator-emisji/')
-# def emission_calculator():
-#     return render_template("emission-calculator.html")
